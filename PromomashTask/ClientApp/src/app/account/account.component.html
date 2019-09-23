@@ -1,0 +1,28 @@
+<mat-card class="card">
+    <mat-card-content>
+        <h1>Registration</h1>
+        <form class="form" [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="full-width">
+                <input matInput name="email" type="email" placeholder="Email" formControlName="email" required>
+                <mat-error *ngIf="emailError()">{{emailError()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput name="password" type="password" placeholder="Password" formControlName="password" required>
+                <mat-error *ngIf="passwordError()">{{passwordError()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput name="passwordConfirmation" type="password" placeholder="Confirm Password" formControlName="passwordConfirmation" required>
+                <mat-error *ngIf="passwordConfirmationError()">{{passwordConfirmationError()}}</mat-error>
+            </mat-form-field>
+    
+            <section>
+                <mat-checkbox name="agree" formControlName="agree" required>Agree with Policy</mat-checkbox>
+                <mat-error *ngIf="agreeError()">{{agreeError()}}</mat-error>
+            </section>
+
+            <button class="submit" mat-raised-button color="primary" type="submit" [disabled]="!accountForm.valid">Next</button>
+        </form>
+    </mat-card-content>  
+</mat-card>

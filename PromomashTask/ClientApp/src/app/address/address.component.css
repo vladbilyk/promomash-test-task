@@ -1,0 +1,17 @@
+.card {
+    max-width: 600px;
+}
+
+.form {
+    min-width: 150px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.submit {
+    margin-top: 20px;
+}

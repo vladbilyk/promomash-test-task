@@ -1,0 +1,32 @@
+<mat-card class="card">
+    <mat-card-content>
+        <h1>Select Address</h1>
+        <form class="form" [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="full-width">
+                <mat-label>Country</mat-label>
+                <mat-select name="countryControl" formControlName="countryControl" (selectionChange)="selectCountry($event)" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let country of countries" [value]="country">
+                        {{country.title}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addressForm.controls.countryControl.hasError('required')">Please choose a country</mat-error>
+                <mat-hint>{{addressForm.controls.countryControl.value?.sound}}</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Province</mat-label>
+                <mat-select name="provinceControl" formControlName="provinceControl" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let province of provinces" [value]="province">
+                        {{province}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addressForm.controls.provinceControl.hasError('required')">Please choose a province</mat-error>
+                <mat-hint>{{addressForm.controls.provinceControl.value?.sound}}</mat-hint>
+            </mat-form-field>
+
+            <button class="submit" mat-raised-button color="primary" type="submit" [disabled]="!addressForm.valid">Save</button>
+        </form>
+    </mat-card-content>
+</mat-card>

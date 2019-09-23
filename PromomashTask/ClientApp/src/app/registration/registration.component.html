@@ -1,0 +1,23 @@
+<div class="container">
+    <app-account *ngIf="isFirstStep()" (submitted)="completeFirstStep($event)"></app-account>
+    <app-address *ngIf="isSecondStep()" (saved)="saveUser($event)"></app-address>
+    <mat-card *ngIf="isSuceededStep()" class="card">
+        <mat-card-content>
+            <h1>User was created successfully</h1>
+            <p>
+                Congratulations! You've just created the user
+                <b>{{credentials.email}}</b>.
+            </p>
+            <button class="submit" mat-raised-button color="primary" (click)="reset()">Create User Again</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="isErrorStep()" class="card">
+        <mat-card-content>
+            <h1>Something went wrong</h1>
+            <p>
+                We are so sorry, but the user was not created. Let's try once again?
+            </p>
+            <button class="submit" mat-raised-button color="primary" (click)="reset()">Start From Scratch</button>
+        </mat-card-content>
+    </mat-card>
+</div>
