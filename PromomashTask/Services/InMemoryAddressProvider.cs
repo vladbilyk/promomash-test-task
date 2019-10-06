@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PromomashTask.Services.Model;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,14 +25,5 @@ namespace PromomashTask.Services
             var country = countries_.FirstOrDefault(c => c.Code == countryCode.ToUpper());
             return Task.FromResult<IEnumerable<string>>( country?.Provinces ?? new string[]{});
         }
-    }
-
-    public class Country
-    {
-        public string Code { get; set; }
-
-        public string Title { get; set; }
-
-        public string[] Provinces { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PromomashTask.Services;
+using PromomashTask.Services.Model;
 using System.Linq;
 using System.Threading.Tasks;
 

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PromomashTask.Services
+namespace PromomashTask.Services.Model
 {
     public interface IUserStorage
     {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PromomashTask.Model;
+using PromomashTask.Services.Model;
 using System;
 using System.Threading.Tasks;
 

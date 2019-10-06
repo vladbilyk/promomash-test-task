@@ -1,5 +1,5 @@
 ﻿using PromomashTask.Model;
-using PromomashTask.Services;
+using PromomashTask.Services.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
