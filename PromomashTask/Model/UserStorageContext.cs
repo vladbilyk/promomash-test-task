@@ -24,11 +24,4 @@ namespace PromomashTask.Model
             modelBuilder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
         }
     }
-
-    public class User
-    {
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string Address { get; set; }
-    }
 }
