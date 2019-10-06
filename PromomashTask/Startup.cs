@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PromomashTask.Model;
 using PromomashTask.Services;
 using PromomashTask.Services.Model;
 

@@ -1,4 +1,4 @@
-﻿namespace PromomashTask.Model
+﻿namespace PromomashTask.Services.Model
 {
     public class User
     {

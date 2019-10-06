@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PromomashTask\PromomashTask.csproj" />
+    <ProjectReference Include="..\Promomash.Services\PromomashTask.Services.csproj" />
+    <ProjectReference Include="..\PromomashTask.Services\PromomashTask.Services.Model.csproj" />
   </ItemGroup>
 </Project>

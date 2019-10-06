@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PromomashTask.Services
 {
-    class InMemoryAddressProvider : IAddressProvider
+    public class InMemoryAddressProvider : IAddressProvider
     {
         private Country[] countries_ = new Country[]
         {

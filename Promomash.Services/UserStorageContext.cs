@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PromomashTask.Services.Model;
 
-namespace PromomashTask.Model
+namespace PromomashTask.Services
 {
     public class UserStorageContext : DbContext
     {

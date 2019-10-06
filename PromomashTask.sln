@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromomashTask.Tests", "Prom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromomashTask.Services.Model", "PromomashTask.Services\PromomashTask.Services.Model.csproj", "{ADA2FA4B-719D-425C-80DE-D3D439CE0B64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromomashTask.Services", "Promomash.Services\PromomashTask.Services.csproj", "{93A1E14F-3FF9-418F-8514-1371B9E454A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{ADA2FA4B-719D-425C-80DE-D3D439CE0B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADA2FA4B-719D-425C-80DE-D3D439CE0B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADA2FA4B-719D-425C-80DE-D3D439CE0B64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A1E14F-3FF9-418F-8514-1371B9E454A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A1E14F-3FF9-418F-8514-1371B9E454A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A1E14F-3FF9-418F-8514-1371B9E454A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A1E14F-3FF9-418F-8514-1371B9E454A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

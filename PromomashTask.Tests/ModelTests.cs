@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using PromomashTask.Model;
+using PromomashTask.Services.Model;
 using System;
 using System.Threading.Tasks;
 using Xunit;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using PromomashTask.Model;
+using PromomashTask.Services;
 using System;
 
 namespace PromomashTask.Tests

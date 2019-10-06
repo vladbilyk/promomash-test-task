@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using PromomashTask.Model;
 using PromomashTask.Services.Model;
 using System;
 using System.Threading.Tasks;
 
 namespace PromomashTask.Services
 {
-    class DbUserStorage : IUserStorage
+    public class DbUserStorage : IUserStorage
     {
         private UserStorageContext Context { get; }
         private ILogger Logger { get; }
