@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace PromomashTask.Controllers
+namespace PromomashTask.Api.Controllers
 {
     public class UserStorageController : Controller
     {

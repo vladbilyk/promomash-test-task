@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PromomashTask.Controllers
+namespace PromomashTask.Api.Controllers
 {
     public class UserRequest
     {

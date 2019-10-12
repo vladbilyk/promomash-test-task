@@ -4,7 +4,7 @@ using PromomashTask.Services.Model;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PromomashTask.Controllers
+namespace PromomashTask.Api.Controllers
 {
     public class AddressDataController : Controller
     {

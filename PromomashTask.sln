@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromomashTask", "PromomashTask\PromomashTask.csproj", "{2AFAE252-DB8C-4D1B-8BBF-558CD63769F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromomashTask.Api", "PromomashTask\PromomashTask.Api.csproj", "{2AFAE252-DB8C-4D1B-8BBF-558CD63769F4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromomashTask.Tests", "PromomashTask.Tests\PromomashTask.Tests.csproj", "{5F8A0DD5-D20B-4974-B79E-06AEF01D4814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromomashTask.Services.Model", "PromomashTask.Services\PromomashTask.Services.Model.csproj", "{ADA2FA4B-719D-425C-80DE-D3D439CE0B64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromomashTask.Services.Model", "PromomashTask.Services\PromomashTask.Services.Model.csproj", "{ADA2FA4B-719D-425C-80DE-D3D439CE0B64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromomashTask.Services", "Promomash.Services\PromomashTask.Services.csproj", "{93A1E14F-3FF9-418F-8514-1371B9E454A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromomashTask.Services", "Promomash.Services\PromomashTask.Services.csproj", "{93A1E14F-3FF9-418F-8514-1371B9E454A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromomashTask.Client", "PromomashTask.Client\PromomashTask.Client.csproj", "{598E2802-40ED-47F3-9322-E9F377813BE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{93A1E14F-3FF9-418F-8514-1371B9E454A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93A1E14F-3FF9-418F-8514-1371B9E454A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93A1E14F-3FF9-418F-8514-1371B9E454A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{598E2802-40ED-47F3-9322-E9F377813BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{598E2802-40ED-47F3-9322-E9F377813BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{598E2802-40ED-47F3-9322-E9F377813BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{598E2802-40ED-47F3-9322-E9F377813BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

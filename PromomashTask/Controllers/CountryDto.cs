@@ -1,4 +1,4 @@
-﻿namespace PromomashTask.Controllers
+﻿namespace PromomashTask.Api.Controllers
 {
     public class CountryDto
     {
