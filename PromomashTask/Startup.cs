@@ -12,6 +12,8 @@ namespace PromomashTask.Api
 {
     public class Startup
     {
+        private const string CorsOriginKey = "CorsOrigin";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -45,14 +47,16 @@ namespace PromomashTask.Api
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseMvc(routes =>
+            app.UseCors(builder =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                var corsOrigin = Configuration[CorsOriginKey];
+                builder.WithOrigins(corsOrigin)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             });
+
+            app.UseHttpsRedirection();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

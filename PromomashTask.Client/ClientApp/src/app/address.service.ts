@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from "../environments/environment"
 
 export interface Country {
     code: string,
@@ -12,15 +13,15 @@ export interface Country {
 })
 export class AddressService {
 
-    countriesUrl : string = '/api/countries';
+    countriesUrl: string = environment.countriesApi;
 
-    constructor(private http: HttpClient,) { }
+    constructor(private http: HttpClient) { }
 
     getCountries() : Observable<Country[]> {
         return this.http.get<Country[]>(this.countriesUrl);
     }
 
     getProvinces(code: string) : Observable<string[]> {
-        return this.http.get<string[]>(`/api/countries/${code}/provinces`);
+        return this.http.get<string[]>(`${this.countriesUrl}/${code}/provinces`);
     }
 }

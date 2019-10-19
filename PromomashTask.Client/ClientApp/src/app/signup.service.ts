@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from "../environments/environment"
 
 interface SignupRequest {
     email: string,
@@ -13,7 +14,7 @@ interface SignupRequest {
 })
 export class SignupService {
 
-    usersUrl: string = '/api/users';
+    usersUrl: string = environment.signupApi;
 
     constructor(private http: HttpClient) { }
 
