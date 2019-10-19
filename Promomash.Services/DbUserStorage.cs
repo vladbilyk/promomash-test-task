@@ -1,36 +1,38 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PromomashTask.Services.Model;
-using System;
-using System.Threading.Tasks;
 
 namespace PromomashTask.Services
 {
     public class DbUserStorage : IUserStorage
     {
-        private UserStorageContext Context { get; }
-        private ILogger Logger { get; }
-
         public DbUserStorage(UserStorageContext context, ILogger<DbUserStorage> logger)
         {
             Context = context;
             Logger = logger;
         }
 
+        private UserStorageContext Context { get; }
+        private ILogger Logger { get; }
+
         public async Task<bool> AddUserAsync(string email, string passwordHash, string address)
         {
             try
             {
                 email = email.TrimStart().TrimEnd().ToLower();
-                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(passwordHash) || string.IsNullOrWhiteSpace(address))
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(passwordHash) ||
+                    string.IsNullOrWhiteSpace(address))
                 {
                     Logger.LogDebug("Invalid parameter was passed");
                     return false;
                 }
 
-                Context.Users.Add(new User { Email = email, PasswordHash = passwordHash, Address = address });
+                Context.Users.Add(new User {Email = email, PasswordHash = passwordHash, Address = address});
                 await Context.SaveChangesAsync();
-                Logger.LogInformation($"User was added successfully with parameters: {email}, {passwordHash}, {address}.");
+                Logger.LogInformation(
+                    $"User was added successfully with parameters: {email}, {passwordHash}, {address}.");
                 return true;
             }
             catch (Exception e)

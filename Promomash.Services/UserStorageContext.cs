@@ -5,12 +5,10 @@ namespace PromomashTask.Services
 {
     public class UserStorageContext : DbContext
     {
-        public UserStorageContext()
-        { }
-
         public UserStorageContext(DbContextOptions<UserStorageContext> options)
             : base(options)
-        { }
+        {
+        }
 
         public DbSet<User> Users { get; set; }
 

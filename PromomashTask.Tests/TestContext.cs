@@ -1,17 +1,22 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using System;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using PromomashTask.Services;
-using System;
 
 namespace PromomashTask.Tests
 {
-    class TestContext : IDisposable
+    internal class TestContext : IDisposable
     {
-        SqliteConnection Connection { get; } = new SqliteConnection("DataSource=:memory:");
-
         internal TestContext()
         {
             Connection.Open();
+        }
+
+        private SqliteConnection Connection { get; } = new SqliteConnection("DataSource=:memory:");
+
+        public void Dispose()
+        {
+            Connection.Dispose();
         }
 
         internal UserStorageContext CreateContext()
@@ -21,11 +26,6 @@ namespace PromomashTask.Tests
                 .Options;
 
             return new UserStorageContext(options);
-        }
-
-        public void Dispose()
-        {
-            Connection.Dispose();
         }
     }
 }

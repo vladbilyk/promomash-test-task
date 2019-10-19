@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
+﻿using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
 using PromomashTask.Services;
 using PromomashTask.Services.Model;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace PromomashTask.Tests
@@ -90,7 +90,7 @@ namespace PromomashTask.Tests
         {
             using (var testContext = new TestContext())
             {
-                var user = new User { Email = "test@test.com", Address = "UK", PasswordHash = "sdfsdf" };
+                var user = new User {Email = "test@test.com", Address = "UK", PasswordHash = "sdfsdf"};
                 using (var context = testContext.CreateContext())
                 {
                     await context.Database.EnsureCreatedAsync();
@@ -108,7 +108,7 @@ namespace PromomashTask.Tests
 
                 using (var context = testContext.CreateContext())
                 {
-                    context.Users.Should().BeEquivalentTo(new[] { user });
+                    context.Users.Should().BeEquivalentTo(user);
                 }
             }
         }
@@ -124,7 +124,7 @@ namespace PromomashTask.Tests
                 using (var context = testContext.CreateContext())
                 {
                     await context.Database.EnsureCreatedAsync();
-                    context.Users.Add(new User { Email = "test@test.com", Address = "USA", PasswordHash = "hash" });
+                    context.Users.Add(new User {Email = "test@test.com", Address = "USA", PasswordHash = "hash"});
                     await context.SaveChangesAsync();
                 }
 
@@ -154,7 +154,8 @@ namespace PromomashTask.Tests
 
                 using (var context = testContext.CreateContext())
                 {
-                    context.Users.Should().BeEquivalentTo(new[] { new User { Email = "test@test.com", Address = "USA", PasswordHash = "hash" } });
+                    context.Users.Should().BeEquivalentTo(new User
+                        {Email = "test@test.com", Address = "USA", PasswordHash = "hash"});
                 }
             }
         }
