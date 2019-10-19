@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { timer } from 'rxjs'; 
 
 import { Credentials } from '../credentials';
 import { UserCheckService } from '../usercheck.service';
@@ -31,12 +32,15 @@ function AtleastOneCapLetterAndOneDigit(control: FormControl) {
     return !ok ? { custompassword: { value: control.value } } : null;
 }
 
+const DEBOUNCING_DELAY: number = 1000;
+
 @Component({
     selector: 'app-account',
     templateUrl: './account.component.html',
     styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+
     @Output() submitted = new EventEmitter<Credentials>();
 
     accountForm = this.fb.group({
@@ -86,7 +90,9 @@ export class AccountComponent implements OnInit {
     }
 
     validateEmailIsFree(control: FormControl) {
-        return this.userCheckService.isUsernameFree(control.value).pipe(map(free =>
-            free ? null : { emailRegistered: control.value }));
+      return timer(DEBOUNCING_DELAY).pipe(switchMap(() => {
+        return this.userCheckService.isUsernameFree(control.value)
+          .pipe(map(free => free ? null : { emailRegistered: control.value }));
+      }));
     }
 }
