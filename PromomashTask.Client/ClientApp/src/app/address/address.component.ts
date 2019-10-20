@@ -2,7 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 
-import { AddressService, Country } from '../services/address.service'
+import { AddressService } from '../services/address.service';
+import { Country } from '../services/Country';
 
 @Component({
     selector: 'app-address',
@@ -29,7 +30,7 @@ export class AddressComponent implements OnInit {
         if (this.addressForm.valid) {
             const country = this.addressForm.controls.countryControl.value.title;
             const province = this.addressForm.controls.provinceControl.value;
-            this.saved.emit(`${country}, ${province}`)
+            this.saved.emit(`${country}, ${province}`);
         }
     }
 

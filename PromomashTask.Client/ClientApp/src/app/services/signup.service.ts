@@ -3,12 +3,6 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../environments/environment"
 
-interface SignupRequest {
-    email: string,
-    password: string,
-    address: string
-}
-
 @Injectable({
     providedIn: 'root'
 })

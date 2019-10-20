@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from "../../environments/environment"
-
-export interface Country {
-    code: string,
-    title: string
-}
+import { environment } from '../../environments/environment'
+import { Country } from './Country';
 
 @Injectable({
     providedIn: 'root'
