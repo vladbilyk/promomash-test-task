@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Credentials } from '../credentials';
+import { Credentials } from '../model/credentials';
 import { SignupService } from '../services/signup.service';
 
 @Component({

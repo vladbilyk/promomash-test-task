@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { AccountComponent } from './account.component';
-import { Credentials } from '../credentials';
+import { Credentials } from '../model/credentials';
 import { UserCheckService } from '../services/usercheck.service';
 
 class MockUserCheckService extends UserCheckService {
