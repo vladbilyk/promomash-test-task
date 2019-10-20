@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { AccountComponent } from './account.component';
 import { Credentials } from '../credentials';
-import { UserCheckService } from '../usercheck.service';
+import { UserCheckService } from '../services/usercheck.service';
 
 class MockUserCheckService extends UserCheckService {
     isUsernameFree(username: string): Observable<boolean> {

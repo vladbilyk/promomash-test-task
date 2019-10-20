@@ -14,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AccountComponent } from '../account/account.component';
 import { AddressComponent } from '../address/address.component';
 import { RegistrationComponent } from './registration.component';
-import { UserCheckService } from '../usercheck.service';
+import { UserCheckService } from '../services/usercheck.service';
 
 class MockUserCheckService extends UserCheckService {
     isUsernameFree(username: string): Observable<boolean> {

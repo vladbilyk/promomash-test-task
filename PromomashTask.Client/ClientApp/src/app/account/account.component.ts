@@ -5,7 +5,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { timer } from 'rxjs'; 
 
 import { Credentials } from '../credentials';
-import { UserCheckService } from '../usercheck.service';
+import { UserCheckService } from '../services/usercheck.service';
 
 // https://jasonwatmore.com/post/2018/11/07/angular-7-reactive-forms-validation-example
 function MustMatch(controlName: string, matchingControlName: string) {
