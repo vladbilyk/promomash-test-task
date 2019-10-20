@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { map, switchMap } from 'rxjs/operators';
 import { timer } from 'rxjs'; 
 
-import { Credentials } from '../model/credentials';
-import { UserCheckService } from '../services/usercheck.service';
+import { Credentials } from '../../model/credentials';
+import { UserCheckService } from '../../services/usercheck.service';
 
 // https://jasonwatmore.com/post/2018/11/07/angular-7-reactive-forms-validation-example
 function MustMatch(controlName: string, matchingControlName: string) {

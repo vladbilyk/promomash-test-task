@@ -2,8 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 
-import { AddressService } from '../services/address.service';
-import { Country } from '../services/Country';
+import { AddressService } from '../../services/address.service';
+import { Country } from '../../services/Country';
 
 @Component({
     selector: 'app-address',

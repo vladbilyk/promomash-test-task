@@ -14,10 +14,10 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AccountComponent } from './account/account.component';
-import { AddressComponent } from './address/address.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { AccountComponent } from './components/account/account.component';
+import { AddressComponent } from './components/address/address.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
