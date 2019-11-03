@@ -20,177 +20,191 @@ class MockUserCheckService extends UserCheckService {
     }
 }
 
-describe('AccountComponent', () => {
-    let component: AccountComponent;
-    let fixture: ComponentFixture<AccountComponent>;
+describe('AccountComponent',
+    () => {
+        let component: AccountComponent;
+        let fixture: ComponentFixture<AccountComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                FormsModule,
-                ReactiveFormsModule,
-                BrowserAnimationsModule,
-                MatButtonModule,
-                MatCardModule,
-                MatCheckboxModule,
-                MatFormFieldModule,
-                MatInputModule,
-                HttpClientTestingModule,
-            ],
-            declarations: [AccountComponent],
-            providers: [UserCheckService]
+        beforeEach(async(() => {
+            TestBed.configureTestingModule({
+                imports: [
+                    FormsModule,
+                    ReactiveFormsModule,
+                    BrowserAnimationsModule,
+                    MatButtonModule,
+                    MatCardModule,
+                    MatCheckboxModule,
+                    MatFormFieldModule,
+                    MatInputModule,
+                    HttpClientTestingModule,
+                ],
+                declarations: [AccountComponent],
+                providers: [UserCheckService]
+            });
+
+            TestBed.overrideComponent(AccountComponent,
+                    { set: { providers: [{ provide: UserCheckService, useClass: MockUserCheckService }] } })
+                .compileComponents();
+
+        }));
+
+        beforeEach(() => {
+            fixture = TestBed.createComponent(AccountComponent);
+            component = fixture.componentInstance;
+            fixture.detectChanges();
         });
 
-        TestBed.overrideComponent(AccountComponent, { set: { providers: [{ provide: UserCheckService, useClass: MockUserCheckService }] } })
-            .compileComponents();
+        it('should create',
+            () => {
+                expect(component).toBeTruthy();
+            });
 
-    }));
+        it('form invalid when empty',
+            () => {
+                expect(component.accountForm.valid).toBeFalsy();
+            });
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(AccountComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        it('email field is required',
+            () => {
+                const email = component.accountForm.controls.email;
+                expect(email.valid).toBeFalsy();
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+                const errors = email.errors || {};
+                expect(errors.required).toBeTruthy();
 
-    it('form invalid when empty', () => {
-        expect(component.accountForm.valid).toBeFalsy();
-    });
+                email.setValue('  ');
+                expect(email.valid).toBeFalsy();
+            });
 
-    it('email field is required', () => {
-        const email = component.accountForm.controls.email;
-        expect(email.valid).toBeFalsy();
+        it('email field must have correct format',
+            () => {
+                const email = component.accountForm.controls.email;
 
-        const errors = email.errors || {};
-        expect(errors.required).toBeTruthy();
+                // Set email to something
+                email.setValue('test');
+                let errors = email.errors || {};
+                expect(errors.required).toBeFalsy();
+                expect(errors.email).toBeTruthy();
 
-        email.setValue('  ');
-        expect(email.valid).toBeFalsy();
-    });
+                // Set email to something correct
+                email.setValue('test@example.com');
+                errors = email.errors || {};
+                expect(errors.required).toBeFalsy();
+                expect(errors.email).toBeFalsy();
+            });
 
-    it('email field must have correct format', () => {
-        const email = component.accountForm.controls.email;
+        it('email field must contains unregistered email',
+            () => {
+                const email = component.accountForm.controls.email;
 
-        // Set email to something
-        email.setValue('test');
-        let errors = email.errors || {};
-        expect(errors.required).toBeFalsy();
-        expect(errors.email).toBeTruthy();
+                email.setValue('registered@example.com');
+                let errors = email.errors || {};
+                expect(errors.required).toBeFalsy();
+                expect(errors.email).toBeFalsy();
+                expect(errors.emailRegistered).toBeTruthy();
 
-        // Set email to something correct
-        email.setValue('test@example.com');
-        errors = email.errors || {};
-        expect(errors.required).toBeFalsy();
-        expect(errors.email).toBeFalsy();
-    });
+                email.setValue('unregistered@example.com');
+                errors = email.errors || {};
+                expect(errors.required).toBeFalsy();
+                expect(errors.email).toBeFalsy();
+                expect(errors.emailRegistered).toBeFalsy();
+            });
 
-    it('email field must contains unregistered email', () => {
-        const email = component.accountForm.controls.email;
+        it('password field is required',
+            () => {
+                const password = component.accountForm.controls.password;
+                expect(password.valid).toBeFalsy();
 
-        email.setValue('registered@example.com');
-        let errors = email.errors || {};
-        expect(errors.required).toBeFalsy();
-        expect(errors.email).toBeFalsy();
-        expect(errors.emailRegistered).toBeTruthy();
+                const errors = password.errors || {};
+                expect(errors.required).toBeTruthy();
+            });
 
-        email.setValue('unregistered@example.com');
-        errors = email.errors || {};
-        expect(errors.required).toBeFalsy();
-        expect(errors.email).toBeFalsy();
-        expect(errors.emailRegistered).toBeFalsy();
-    });
+        const invalidPassword = [
+            '21212',
+            'sfddfsdfs121212dsfdf',
+            'sfddfsdf',
+            '1231231sfddfsdf',
+            'sfddfsdf2342',
+        ];
 
-    it('password field is required', () => {
-        const password = component.accountForm.controls.password;
-        expect(password.valid).toBeFalsy();
-
-        const errors = password.errors || {};
-        expect(errors.required).toBeTruthy();
-    });
-
-    const invalidPassword = [
-        '21212',
-        'sfddfsdfs121212dsfdf',
-        'sfddfsdf',
-        '1231231sfddfsdf',
-        'sfddfsdf2342',
-    ];
-
-    invalidPassword.forEach((test, index) => {
-        it(`invalid password ${test} (testcase: ${index + 1})`, () => {
-            const password = component.accountForm.controls.password;
-            password.setValue(test);
-            expect(password.valid).toBeFalsy();
+        invalidPassword.forEach((test, index) => {
+            it(`invalid password ${test} (testcase: ${index + 1})`,
+                () => {
+                    const password = component.accountForm.controls.password;
+                    password.setValue(test);
+                    expect(password.valid).toBeFalsy();
+                });
         });
-    });
 
-    const validPassword = [
-        '21212vffgV',
-        'sfddVfsdfs121212dsfdf',
-        '1V',
-        'V1',
-    ];
+        const validPassword = [
+            '21212vffgV',
+            'sfddVfsdfs121212dsfdf',
+            '1V',
+            'V1',
+        ];
 
-    validPassword.forEach((test, index) => {
-        it(`valid password ${test} (testcase: ${index + 1})`, () => {
-            const password = component.accountForm.controls.password;
-            password.setValue(test);
-            expect(password.valid).toBeTruthy();
+        validPassword.forEach((test, index) => {
+            it(`valid password ${test} (testcase: ${index + 1})`,
+                () => {
+                    const password = component.accountForm.controls.password;
+                    password.setValue(test);
+                    expect(password.valid).toBeTruthy();
+                });
         });
+
+        it('agree field is required',
+            () => {
+                const agree = component.accountForm.controls.agree;
+                expect(agree.valid).toBeTruthy();
+
+                agree.setValue(false);
+                const errors = agree.errors || {};
+                expect(errors.required).toBeTruthy();
+            });
+
+        it('confirm password field is required',
+            () => {
+                const confirmation = component.accountForm.controls.passwordConfirmation;
+                expect(confirmation.valid).toBeFalsy();
+
+                const errors = confirmation.errors || {};
+                expect(errors.required).toBeTruthy();
+            });
+
+        it('confirm password field must be the same as password',
+            () => {
+                const password = component.accountForm.controls.password;
+                const confirmation = component.accountForm.controls.passwordConfirmation;
+
+                password.setValue('123456');
+                confirmation.setValue('123');
+
+                let errors = confirmation.errors || {};
+                expect(errors.mustMatch).toBeTruthy();
+
+                confirmation.setValue('123456');
+                errors = confirmation.errors || {};
+                expect(errors.mustMatch).toBeFalsy();
+            });
+
+        it('submitting a form emits the credentials',
+            () => {
+                expect(component.accountForm.valid).toBeFalsy();
+                component.accountForm.controls.email.setValue('test@test.com');
+                component.accountForm.controls.password.setValue('123V');
+                component.accountForm.controls.passwordConfirmation.setValue('123V');
+                expect(component.accountForm.valid).toBeTruthy();
+
+                let creds: Credentials;
+                // Subscribe to the Observable and store the user in a local variable.
+                component.submitted.subscribe((value) => creds = value);
+
+                // Trigger the login function
+                component.onSubmit();
+
+                // Now we can check to make sure the emitted value is correct
+                expect(creds.email).toBe('test@test.com');
+                expect(creds.password).toBe('123V');
+            });
+
     });
-
-    it('agree field is required', () => {
-        const agree = component.accountForm.controls.agree;
-        expect(agree.valid).toBeTruthy();
-
-        agree.setValue(false);
-        const errors = agree.errors || {};
-        expect(errors.required).toBeTruthy();
-    });
-
-    it('confirm password field is required', () => {
-        const confirmation = component.accountForm.controls.passwordConfirmation;
-        expect(confirmation.valid).toBeFalsy();
-
-        const errors = confirmation.errors || {};
-        expect(errors.required).toBeTruthy();
-    });
-
-    it('confirm password field must be the same as password', () => {
-        const password = component.accountForm.controls.password;
-        const confirmation = component.accountForm.controls.passwordConfirmation;
-
-        password.setValue('123456');
-        confirmation.setValue('123');
-
-        let errors = confirmation.errors || {};
-        expect(errors.mustMatch).toBeTruthy();
-
-        confirmation.setValue('123456');
-        errors = confirmation.errors || {};
-        expect(errors.mustMatch).toBeFalsy();
-    });
-
-    it('submitting a form emits the credentials', () => {
-        expect(component.accountForm.valid).toBeFalsy();
-        component.accountForm.controls.email.setValue('test@test.com');
-        component.accountForm.controls.password.setValue('123V');
-        component.accountForm.controls.passwordConfirmation.setValue('123V');
-        expect(component.accountForm.valid).toBeTruthy();
-
-        let creds: Credentials;
-        // Subscribe to the Observable and store the user in a local variable.
-        component.submitted.subscribe((value) => creds = value);
-
-        // Trigger the login function
-        component.onSubmit();
-
-        // Now we can check to make sure the emitted value is correct
-        expect(creds.email).toBe('test@test.com');
-        expect(creds.password).toBe('123V');
-    });
-
-});

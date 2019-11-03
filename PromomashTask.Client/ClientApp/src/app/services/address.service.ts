@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'
 import { Country } from './Country';
 
@@ -9,15 +9,15 @@ import { Country } from './Country';
 })
 export class AddressService {
 
-    countriesUrl: string = environment.countriesApi;
+    countriesUrl = environment.countriesApi;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
-    getCountries() : Observable<Country[]> {
+    getCountries(): Observable<Country[]> {
         return this.http.get<Country[]>(this.countriesUrl);
     }
 
-    getProvinces(code: string) : Observable<string[]> {
+    getProvinces(code: string): Observable<string[]> {
         return this.http.get<string[]>(`${this.countriesUrl}/${code}/provinces`);
     }
 }

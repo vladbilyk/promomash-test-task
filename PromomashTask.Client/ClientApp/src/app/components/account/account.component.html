@@ -16,7 +16,7 @@
                 <input matInput name="passwordConfirmation" type="password" placeholder="Confirm Password" formControlName="passwordConfirmation" required>
                 <mat-error *ngIf="passwordConfirmationError()">{{passwordConfirmationError()}}</mat-error>
             </mat-form-field>
-    
+
             <section>
                 <mat-checkbox name="agree" formControlName="agree" required>Agree with Policy</mat-checkbox>
                 <mat-error *ngIf="agreeError()">{{agreeError()}}</mat-error>
@@ -24,5 +24,5 @@
 
             <button class="submit" mat-raised-button color="primary" type="submit" [disabled]="!account.valid">Next</button>
         </form>
-    </mat-card-content>  
+    </mat-card-content>
 </mat-card>

@@ -28,7 +28,7 @@ export class AddressComponent implements OnInit {
 
 
     ngOnInit() {
-         this.countries = this.addressService.getCountries();
+        this.countries = this.addressService.getCountries();
     }
 
     onSubmit() {

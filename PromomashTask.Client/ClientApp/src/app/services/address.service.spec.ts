@@ -3,13 +3,15 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AddressService } from './address.service';
 
-describe('AddressService', () => {
-    beforeEach(() => TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule]
-    }));
+describe('AddressService',
+    () => {
+        beforeEach(() => TestBed.configureTestingModule({
+            imports: [HttpClientTestingModule]
+        }));
 
-    it('should be created', () => {
-        const service: AddressService = TestBed.get(AddressService);
-        expect(service).toBeTruthy();
+        it('should be created',
+            () => {
+                const service: AddressService = TestBed.get(AddressService);
+                expect(service).toBeTruthy();
+            });
     });
-});

@@ -1,17 +1,11 @@
-.card {
-    max-width: 600px;
-}
+.card { max-width: 600px; }
 
 .form {
-    min-width: 150px;
     max-width: 600px;
+    min-width: 150px;
     width: 100%;
 }
 
-.full-width {
-    width: 100%;
-}
+.full-width { width: 100%; }
 
-.submit {
-    margin-top: 20px;
-}
+.submit { margin-top: 20px; }
