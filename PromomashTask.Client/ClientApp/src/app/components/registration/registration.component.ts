@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Credentials } from '../../model/credentials';
 import { SignupService } from '../../services/signup.service';
 import { UserCheckService } from '../../services/usercheck.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -38,7 +37,8 @@ export class RegistrationComponent implements OnInit {
         { validator: MustMatch('password', 'passwordConfirmation') });
 
     step = 1;
-    credentials: Credentials = null;
+
+    justCreated: string;
 
     ngOnInit() {
     }
@@ -59,16 +59,17 @@ export class RegistrationComponent implements OnInit {
         return this.step === 4;
     }
 
-    completeFirstStep(creds: Credentials) {
+    completeFirstStep() {
         this.step = 2;
-        this.credentials = creds;
     }
 
     saveUser(address: string) {
-        const { email, password } = this.credentials;
+        const { email, password } = this.account.value;
+
         this.signupService.signup({ email, password, address })
             .subscribe(ok => {
                 if (ok) {
+                    this.justCreated = this.account.controls['email'].value;
                     this.step = 3;
                 } else {
                     this.step = 4;
@@ -78,10 +79,11 @@ export class RegistrationComponent implements OnInit {
 
     reset() {
         this.step = 1;
-        this.credentials = null;
+        this.account.reset();
+        this.account.patchValue({agree: true});
     }
 
-    validateEmailIsFree(control: FormControl) {
+    private validateEmailIsFree(control: FormControl) {
         return timer(DEBOUNCING_DELAY).pipe(switchMap(() => {
             return this.userCheckService.isUsernameFree(control.value)
                 .pipe(map(free => free ? null : { emailRegistered: control.value }));
