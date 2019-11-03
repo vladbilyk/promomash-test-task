@@ -6,7 +6,7 @@
                 <mat-label>Country</mat-label>
                 <mat-select name="countryControl" formControlName="country" (selectionChange)="selectCountry($event)" required>
                     <mat-option>--</mat-option>
-                    <mat-option *ngFor="let country of countries" [value]="country">
+                    <mat-option *ngFor="let country of countries | async" [value]="country">
                         {{country.title}}
                     </mat-option>
                 </mat-select>
@@ -18,7 +18,7 @@
                 <mat-label>Province</mat-label>
                 <mat-select name="provinceControl" formControlName="province" required>
                     <mat-option>--</mat-option>
-                    <mat-option *ngFor="let province of provinces" [value]="province">
+                    <mat-option *ngFor="let province of provinces | async" [value]="province">
                         {{province}}
                     </mat-option>
                 </mat-select>
