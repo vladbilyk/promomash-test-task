@@ -1,35 +1,34 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { MatSelectChange } from "@angular/material/select";
 
-import { AddressService } from '../../services/address.service';
-import { Country } from '../../services/Country';
+import { AddressService } from "../../services/address.service";
+import { Country } from "../../services/Country";
 
 @Component({
-    selector: 'app-address',
-    templateUrl: './address.component.html',
-    styleUrls: ['./address.component.css']
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "app-address",
+    templateUrl: "./address.component.html",
+    styleUrls: ["./address.component.css"]
 })
 export class AddressComponent implements OnInit {
 
-    @Output() saved = new EventEmitter<string>();
+    constructor(private addressService: AddressService) {}
 
-    addressForm = this.fb.group({
-        countryControl: ['', [Validators.required]],
-        provinceControl: ['', [Validators.required]],
-    });
+    @Input()
+    address: FormGroup;
 
-    constructor(private fb: FormBuilder,
-        private addressService: AddressService) { }
+    @Output()
+    saved = new EventEmitter<string>();
 
     ngOnInit() {
         this.addressService.getCountries().subscribe(countries => this.countries = countries);
     }
 
     onSubmit() {
-        if (this.addressForm.valid) {
-            const country = this.addressForm.controls.countryControl.value.title;
-            const province = this.addressForm.controls.provinceControl.value;
+        if (this.address.valid) {
+            const country = this.address.controls["country"].value;
+            const province = this.address.controls["province"].value;
             this.saved.emit(`${country}, ${province}`);
         }
     }
@@ -42,7 +41,7 @@ export class AddressComponent implements OnInit {
         this.addressService.getProvinces(e.value.code)
             .subscribe(provinces => {
                 this.provinces = provinces;
-                this.addressForm.controls.provinceControl.setValue('');
-            })
+                this.address.controls["province"].setValue("");
+            });
     }
 }

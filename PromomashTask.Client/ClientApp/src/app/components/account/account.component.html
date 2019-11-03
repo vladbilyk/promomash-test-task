@@ -1,7 +1,7 @@
 <mat-card class="card">
     <mat-card-content>
         <h1>Registration</h1>
-        <form class="form" [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+        <form class="form" [formGroup]="account" (ngSubmit)="onSubmit()">
             <mat-form-field class="full-width">
                 <input matInput name="email" type="email" placeholder="Email" formControlName="email" required>
                 <mat-error *ngIf="emailError()">{{emailError()}}</mat-error>
@@ -22,7 +22,7 @@
                 <mat-error *ngIf="agreeError()">{{agreeError()}}</mat-error>
             </section>
 
-            <button class="submit" mat-raised-button color="primary" type="submit" [disabled]="!accountForm.valid">Next</button>
+            <button class="submit" mat-raised-button color="primary" type="submit" [disabled]="!account.valid">Next</button>
         </form>
     </mat-card-content>  
 </mat-card>

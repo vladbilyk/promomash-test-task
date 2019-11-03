@@ -1,6 +1,6 @@
 <div class="container">
-    <app-account *ngIf="isFirstStep()" (submitted)="completeFirstStep($event)"></app-account>
-    <app-address *ngIf="isSecondStep()" (saved)="saveUser($event)"></app-address>
+    <app-account *ngIf="isFirstStep()" [account]="account" (submitted)="completeFirstStep($event)"></app-account>
+    <app-address *ngIf="isSecondStep()" [address]="address" (saved)="saveUser($event)"></app-address>
     <mat-card *ngIf="isSuceededStep()" class="card">
         <mat-card-content>
             <h1>User was created successfully</h1>
