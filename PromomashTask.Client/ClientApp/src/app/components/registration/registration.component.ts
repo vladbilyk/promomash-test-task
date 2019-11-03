@@ -1,21 +1,21 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
-import { Credentials } from "../../model/credentials";
-import { SignupService } from "../../services/signup.service";
-import { UserCheckService } from "../../services/usercheck.service";
-import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { Credentials } from '../../model/credentials';
+import { SignupService } from '../../services/signup.service';
+import { UserCheckService } from '../../services/usercheck.service';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
-import { map, switchMap } from "rxjs/operators";
-import { timer } from "rxjs";
+import { map, switchMap } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
-import { MustMatch, AtleastOneCapLetterAndOneDigit } from "../validators";
+import { MustMatch, AtleastOneCapLetterAndOneDigit } from '../validators';
 
 const DEBOUNCING_DELAY = 1000;
 
 @Component({
-    selector: "app-registration",
-    templateUrl: "./registration.component.html",
-    styleUrls: ["./registration.component.css"]
+    selector: 'app-registration',
+    templateUrl: './registration.component.html',
+    styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
 
@@ -25,17 +25,17 @@ export class RegistrationComponent implements OnInit {
     }
 
     address = this.fb.group({
-        country: ["", [Validators.required]],
-        province: ["", [Validators.required]],
+        country: ['', [Validators.required]],
+        province: ['', [Validators.required]],
     });
 
     account = this.fb.group({
-            email: ["", [Validators.required, Validators.email], this.validateEmailIsFree.bind(this)],
-            password: ["", [Validators.required, AtleastOneCapLetterAndOneDigit]],
-            passwordConfirmation: ["", Validators.required],
+            email: ['', [Validators.required, Validators.email], this.validateEmailIsFree.bind(this)],
+            password: ['', [Validators.required, AtleastOneCapLetterAndOneDigit]],
+            passwordConfirmation: ['', Validators.required],
             agree: [true, Validators.requiredTrue]
         },
-        { validator: MustMatch("password", "passwordConfirmation") });
+        { validator: MustMatch('password', 'passwordConfirmation') });
 
     step = 1;
     credentials: Credentials = null;
