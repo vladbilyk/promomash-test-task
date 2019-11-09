@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { SignupService } from '../../services/signup.service';
 import { UserCheckService } from '../../services/usercheck.service';
@@ -6,6 +6,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { map, switchMap } from 'rxjs/operators';
 import { timer } from 'rxjs';
+
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 import { MustMatch, AtleastOneCapLetterAndOneDigit } from '../validators';
 
@@ -16,8 +18,7 @@ const DEBOUNCING_DELAY = 1000;
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
-
+export class RegistrationComponent implements OnInit, OnDestroy {
     constructor(private signupService: SignupService,
         private userCheckService: UserCheckService,
         private fb: FormBuilder) {
@@ -41,6 +42,9 @@ export class RegistrationComponent implements OnInit {
     justCreated: string;
 
     ngOnInit() {
+    }
+
+    ngOnDestroy(): void {
     }
 
     isFirstStep(): boolean {
@@ -67,6 +71,7 @@ export class RegistrationComponent implements OnInit {
         const { email, password } = this.account.value;
 
         this.signupService.signup({ email, password, address })
+            .pipe(untilDestroyed(this))
             .subscribe(ok => {
                 if (ok) {
                     this.justCreated = this.account.controls['email'].value;
